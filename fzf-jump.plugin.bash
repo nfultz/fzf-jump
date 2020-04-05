@@ -2,10 +2,10 @@
 
 function jump() {
 
-    FZF_ARGS='-e +x --print-query --expect=ctrl-x,ctrl-i,ctrl-f,ctrl-c,ctrl-b,ctrl-h'
+    FZF_ARGS='-e +x --print-query --expect=ctrl-x,ctrl-i,ctrl-f,ctrl-c,ctrl-b,ctrl-h,ctrl-g'
 
     F=$(
-    { dirs -v; ls -d "$1"*/ ; D=`pwd`; while [ "$D" != / ]; do D=`dirname $D`; echo "$D"; done; } 2>/dev/null | \
+    { dirs -v | tac; ls -d "$1"*/ ; D=`pwd`; while [ "$D" != / ]; do D=`dirname $D`; echo "$D"; done; } 2>/dev/null | \
         fzf $FZF_ARGS --preview="echo {}; [ -d {} ] && ls -latrh {}" | {
       read query;
       read expect;
@@ -23,6 +23,7 @@ function jump() {
               fi
               jump "$dir"
               ;;
+          ctrl-g);&
           "")
               if dirs -v | grep -q "^$dir\$"; then echo "$dir" | sed -E 's/^ *([0-9]+) *.*$/+\1/';
               elif test "$dir"; then echo "$dir";
@@ -68,5 +69,3 @@ function jump() {
     done;
 
 }
-
-
