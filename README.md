@@ -19,7 +19,8 @@ Most of the key mappings in the search window are the default fzf ones. The most
 
 In Bash, the script creates a commands:
 
-- **jump** to jump to a given bookmark using fzf. By default, the script binds this function to **ctrl-g**. It is prefixed with a space, so jump will not appear in your history if you have `HISTCONTROL=ignorespace` set.
+- **jump** to jump to a given bookmark using fzf. 
+- You can bind this to a shortcut in your configuration files, for example using `bind '"\C-g":" jump\n"'	`. I recommend prefixing the command with a space, so jump will not appear in your history if you have `HISTCONTROL=ignorespace` set.
 
 ## Sources
 
