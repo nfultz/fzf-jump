@@ -1,5 +1,7 @@
 # Bookmarks
 
+[ -n "$1" ] && bind "\"$1\":\" jump\n\""
+
 function jump() {
 
     FZF_ARGS='-e +x --print-query --expect=ctrl-x,ctrl-i,ctrl-f,ctrl-c,ctrl-b,ctrl-h,ctrl-g'
